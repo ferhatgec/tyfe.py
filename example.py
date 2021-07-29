@@ -10,5 +10,6 @@ print({
           tyfe.Tyfes.Sh: 'SH',
           tyfe.Tyfes.Png: 'PNG',
           tyfe.Tyfes.Gif: 'GIF',
-          tyfe.Tyfes.Python: 'Python'
+          tyfe.Tyfes.Python: 'Python',
+          tyfe.Tyfes.Bmp: 'BMP'
       }.get(init.check(data), ''))
