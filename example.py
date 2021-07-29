@@ -11,5 +11,6 @@ print({
           tyfe.Tyfes.Png: 'PNG',
           tyfe.Tyfes.Gif: 'GIF',
           tyfe.Tyfes.Python: 'Python',
-          tyfe.Tyfes.Bmp: 'BMP'
+          tyfe.Tyfes.Bmp: 'BMP',
+          tyfe.Tyfes.Webp: 'WEBP'
       }.get(init.check(data), ''))
