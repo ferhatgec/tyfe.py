@@ -13,5 +13,6 @@ print({
           tyfe.Tyfes.Python: 'Python',
           tyfe.Tyfes.Bmp: 'BMP',
           tyfe.Tyfes.Webp: 'WEBP',
-          tyfe.Tyfes.Pdf: 'PDF'
-      }.get(init.check(data.lower()), ''))
+          tyfe.Tyfes.Pdf: 'PDF',
+          tyfe.Tyfes.Ico: 'ICO'
+      }.get(init.check(data.lower()), 'hmm?'))
