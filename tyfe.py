@@ -21,6 +21,7 @@ class Tyfes(IntEnum):
     Python = 6
     Bmp = 7
     Webp = 8
+    Pdf = 9
 
 
 class Tyfe:
@@ -34,7 +35,8 @@ class Tyfe:
             '.png',
             '.gif',
             '.bmp',
-            '.webp'
+            '.webp',
+            '.pdf'
         ]
 
     class Markers(IntEnum):
@@ -57,6 +59,11 @@ class Tyfe:
         Webp_Start_2 = 0x45
         Webp_Start_3 = 0x42
         Webp_Start_4 = 0x50
+
+        Pdf_Soi = 0x25
+        Pdf_Start_2 = 0x50
+        Pdf_Start_3 = 0x44
+        Pdf_Start_4 = 0x46
 
     def ext(self, ext2: str, ext3: str) -> bool:
         return (self.extension == ext2) or (self.extension == ext3)
@@ -109,6 +116,12 @@ class Tyfe:
             marker[10] == self.Markers.Webp_Start_3 and \
             marker[11] == self.Markers.Webp_Start_4:
             return Tyfes.Webp
+
+        if marker[0] == self.Markers.Pdf_Soi and \
+            marker[1] == self.Markers.Pdf_Start_2 and \
+            marker[2] == self.Markers.Pdf_Start_3 and \
+            marker[3] == self.Markers.Pdf_Start_4:
+            return Tyfes.Pdf
 
         return Tyfes.Nothing
 
