@@ -4,6 +4,7 @@ init = tyfe.Tyfe()
 data = str(input())
 
 print({
+          tyfe.Tyfes.FPaper: 'FPaper',
           tyfe.Tyfes.Jpeg: 'JPEG',
           tyfe.Tyfes.FlaScript: 'FlaScript',
           tyfe.Tyfes.Bash: 'BASH',

@@ -12,17 +12,18 @@ from enum import IntEnum
 
 class Tyfes(IntEnum):
     Nothing = -1
-    Jpeg = 0
-    Png = 1
-    Gif = 2
-    FlaScript = 3
-    Bash = 4
-    Sh = 5
-    Python = 6
-    Bmp = 7
-    Webp = 8
-    Pdf = 9
-    Ico = 10
+    FPaper = 0
+    Jpeg = 1
+    Png = 2
+    Gif = 3
+    FlaScript = 4
+    Bash = 5
+    Sh = 6
+    Python = 7
+    Bmp = 8
+    Webp = 9
+    Pdf = 10
+    Ico = 11
 
 
 class Tyfe:
@@ -31,6 +32,7 @@ class Tyfe:
         self.filename: str = ''
 
         self.binary_ext = [
+            '.fpaper',
             '.jpg',
             '.jpeg',
             '.png',
@@ -42,6 +44,13 @@ class Tyfe:
         ]
 
     class Markers(IntEnum):
+        FPaper_Start = 0x02
+        FPaper_Start_2 = 0x46
+        FPaper_Start_3 = 0x50
+        FPaper_Start_4 = 0x61
+        FPaper_Start_5 = 0x67
+        FPaper_Start_6 = 0x65
+
         Jpeg_Soi = 0xD8
         Jpeg_Start = 0xFF
 
@@ -95,6 +104,14 @@ class Tyfe:
         with open(self.filename, 'rb') as file:
             while byte := file.read(1):
                 marker += byte
+
+        if marker[0] == self.Markers.FPaper_Start and \
+            marker[1] == self.Markers.FPaper_Start_2 and \
+            marker[2] == self.Markers.FPaper_Start_3 and \
+            marker[3] == self.Markers.FPaper_Start_4 and \
+            marker[4] == self.Markers.FPaper_Start_5 and \
+            marker[5] == self.Markers.FPaper_Start_6:
+            return Tyfes.FPaper
 
         if marker[0] == self.Markers.Jpeg_Start and \
             marker[1] == self.Markers.Jpeg_Soi and \
