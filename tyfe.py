@@ -26,6 +26,13 @@ class Tyfe:
         self.extension: str = ''
         self.filename: str = ''
 
+        self.binary_ext = [
+            '.jpg',
+            '.jpeg',
+            '.png',
+            '.gif'
+        ]
+
     class Markers(IntEnum):
         Jpeg_Soi = 0xD8
         Jpeg_Start = 0xFF
@@ -44,12 +51,17 @@ class Tyfe:
 
     def check(self, file: str) -> Tyfes:
         from pathlib import Path
+
         self.filename = file
         self.extension = Path(self.filename).suffix
 
-        if self.ext( '.jpg', '.jpeg') or \
-            self.ext('.png', '') or \
-            self.ext('.gif', ''):
+        found = False
+
+        for ext in self.binary_ext:
+            if self.extension == ext:
+                self.found = True
+
+        if self.found:
             return self.what_is_this()
         else:
             return self.is_shebang()
