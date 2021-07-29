@@ -1,4 +1,5 @@
 import tyfe
+from pathlib import Path
 
 init = tyfe.Tyfe()
 data = str(input())
@@ -16,4 +17,4 @@ print({
           tyfe.Tyfes.Webp: 'WEBP',
           tyfe.Tyfes.Pdf: 'PDF',
           tyfe.Tyfes.Ico: 'ICO'
-      }.get(init.check(data.lower()), 'hmm?'))
+      }.get(init.check(data.lower()), Path(data).suffix.upper()[:1]))

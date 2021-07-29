@@ -7,6 +7,7 @@
 #
 # github.com/ferhatgec/tyfe.py
 # github.com/ferhatgec/tyfe
+#
 
 from enum import IntEnum
 
@@ -92,9 +93,9 @@ class Tyfe:
 
         for ext in self.binary_ext:
             if self.extension == ext:
-                self.found = True
+                found = True
 
-        if self.found:
+        if found:
             return self.what_is_this()
         else:
             return self.is_shebang()
